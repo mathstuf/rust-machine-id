@@ -1,3 +1,5 @@
+extern crate log;
+
 extern crate uuid;
 use self::uuid::Uuid;
 
@@ -17,5 +19,11 @@ fn _get_machine_id() -> Result<Uuid, Box<Error>> {
 }
 
 pub fn get_machine_id() -> Option<Uuid> {
-    _get_machine_id().ok()
+    match _get_machine_id() {
+        Ok(uuid) => Some(uuid),
+        Err(err) => {
+            debug!("{:?}", err);
+            None
+        },
+    }
 }

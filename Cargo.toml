@@ -9,6 +9,7 @@ Library to get a UUID specific to the machine.
 
 [dependencies]
 lazy_static = "~0.1.14"
+log = "~0.3.2"
 #uuid = "~0.1.17"
 # https://github.com/retep998/winapi-rs/issues/214
 #winapi = "~0.2.4"
