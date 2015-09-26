@@ -35,7 +35,7 @@ lazy_static! {
 
 impl MachineId {
     /// Retrieves or generates the machine-specific ID.
-    pub fn new() -> MachineId {
+    pub fn get() -> MachineId {
         MachineId {
             uuid: GLOBAL_ID.unwrap_or(*GENERATED_ID).clone(),
         }
