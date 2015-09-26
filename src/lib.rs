@@ -4,6 +4,13 @@ extern crate lazy_static;
 extern crate uuid;
 use self::uuid::Uuid;
 
+#[cfg(unix)]
+mod imp {
+    mod unix;
+    pub use self::unix::get_machine_id;
+}
+
+#[cfg(not(any(unix)))]
 mod imp {
     fn get_machine_id() -> Option<Uuid> {
         None
