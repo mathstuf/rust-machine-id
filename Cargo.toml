@@ -6,6 +6,9 @@ license = "BSD"
 description = """
 Library to get a UUID specific to the machine.
 """
+repository = "https://github.com/mathstuf/rust-machine-id"
+homepage = "https://github.com/mathstuf/rust-machine-id"
+readme = "README.md"
 
 [dependencies]
 lazy_static = "~0.1.14"
