@@ -47,3 +47,19 @@ impl fmt::Display for MachineId {
         write!(f, "{}", self.uuid)
     }
 }
+
+#[test]
+fn test_idempotent() {
+    let fst = MachineId::get();
+    let snd = MachineId::get();
+
+    assert_eq!(fst, snd);
+}
+
+#[test]
+fn test_can_print() {
+    let mid = MachineId::get();
+
+    println!("{}", mid);
+    assert_eq!(false, true);
+}
