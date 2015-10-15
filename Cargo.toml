@@ -2,7 +2,7 @@
 name = "machine-id"
 version = "0.2.0"
 authors = ["Ben Boeckel <mathstuf@gmail.com>"]
-license = "BSD"
+license = "BSD-3-Clause"
 description = """
 Library to get a UUID specific to the machine.
 """
