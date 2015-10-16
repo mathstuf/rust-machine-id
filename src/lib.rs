@@ -61,5 +61,4 @@ fn test_can_print() {
     let mid = MachineId::get();
 
     println!("{}", mid);
-    assert_eq!(false, true);
 }
