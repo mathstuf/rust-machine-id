@@ -37,7 +37,7 @@ impl MachineId {
     /// Retrieves or generates the machine-specific ID.
     pub fn get() -> MachineId {
         MachineId {
-            uuid: GLOBAL_ID.unwrap_or(*GENERATED_ID).clone(),
+            uuid: GLOBAL_ID.unwrap_or(*GENERATED_ID),
         }
     }
 }
