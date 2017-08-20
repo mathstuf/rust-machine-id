@@ -1,14 +1,14 @@
 [package]
 name = "machine-id"
-version = "0.2.2"
+version = "0.3.0"
 authors = ["Ben Boeckel <mathstuf@gmail.com>"]
 license = "BSD-3-Clause"
 description = """
 Library to get a UUID specific to the machine.
 """
 repository = "https://github.com/mathstuf/rust-machine-id"
-homepage = "https://github.com/mathstuf/rust-machine-id"
-readme = "README.md"
+documentation = "https://docs.rs/machine-id/~0.3"
+keywords = ["uuid"]
 
 [dependencies]
 error-chain = "~0.10"
