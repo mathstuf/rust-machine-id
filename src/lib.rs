@@ -1,11 +1,22 @@
+// Distributed under the OSI-approved BSD 3-Clause License.
+// See accompanying LICENSE file for details.
+
+#[macro_use]
+extern crate error_chain;
+
 #[macro_use]
 extern crate lazy_static;
 
 #[macro_use]
 extern crate log;
 
-extern crate uuid;
-use self::uuid::Uuid;
+mod crates {
+    pub extern crate uuid;
+}
+
+use crates::uuid::{Uuid, UuidVersion};
+
+use std::fmt;
 
 #[cfg(unix)]
 mod imp {
@@ -20,8 +31,6 @@ mod imp {
     }
 }
 
-use std::fmt;
-
 /// A machine-specific ID.
 #[derive(PartialEq, Eq, Debug, Clone, Copy)]
 pub struct MachineId {
@@ -29,7 +38,8 @@ pub struct MachineId {
 }
 
 lazy_static! {
-    static ref GENERATED_ID: Uuid = Uuid::new_v4();
+    static ref GENERATED_ID: Uuid = Uuid::new(UuidVersion::Random)
+        .expect("failed to generate a random uuid");
     static ref GLOBAL_ID: Option<Uuid> = imp::get_machine_id();
 }
 

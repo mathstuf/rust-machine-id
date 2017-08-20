@@ -1,25 +1,40 @@
-extern crate log;
+// Distributed under the OSI-approved BSD 3-Clause License.
+// See accompanying LICENSE file for details.
 
-extern crate uuid;
-use self::uuid::Uuid;
+use crates::uuid::{ParseError, Uuid};
 
-use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-fn _get_machine_id() -> Result<Uuid, Box<Error>> {
-    let fin = try!(File::open("/etc/machine-id"));
+error_chain! {
+    errors {
+        Io {
+            description("I/O error")
+        }
+
+        Parse(err: ParseError) {
+            description("parse error")
+            display("parse error: {}", err)
+        }
+    }
+}
+
+fn get_machine_id_impl() -> Result<Uuid> {
+    let fin = File::open("/etc/machine-id")
+        .chain_err(|| ErrorKind::Io)?;
     let mut reader = BufReader::new(fin);
     let mut line = String::new();
 
-    try!(reader.read_line(&mut line));
+    reader.read_line(&mut line)
+        .chain_err(|| ErrorKind::Io)?;
     line.truncate(32);
 
-    Ok(try!(Uuid::parse_str(&line)))
+    Uuid::parse_str(&line)
+        .map_err(|err| ErrorKind::Parse(err).into())
 }
 
 pub fn get_machine_id() -> Option<Uuid> {
-    match _get_machine_id() {
+    match get_machine_id_impl() {
         Ok(uuid) => Some(uuid),
         Err(err) => {
             debug!("{:?}", err);
