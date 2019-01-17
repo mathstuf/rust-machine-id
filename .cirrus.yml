@@ -17,7 +17,7 @@ rustfmt_task:
     component_script: rustup component add rustfmt
     fmt_script: cargo fmt --all -- --check
 
-test_task:
+linux_task:
     matrix:
         - container:
             image: rust:latest
