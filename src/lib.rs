@@ -12,6 +12,13 @@ extern crate log;
 
 mod crates {
     pub extern crate uuid;
+
+    #[cfg(windows)]
+    pub extern crate advapi32;
+    #[cfg(windows)]
+    pub extern crate winapi;
+    #[cfg(windows)]
+    pub extern crate win32_error;
 }
 
 use crates::uuid::{Uuid, UuidVersion};
@@ -24,7 +31,13 @@ mod imp {
     pub use self::unix::get_machine_id;
 }
 
-#[cfg(not(any(unix)))]
+#[cfg(windows)]
+mod imp {
+    mod windows;
+    pub use self::windows::get_machine_id;
+}
+
+#[cfg(not(any(unix, windows)))]
 mod imp {
     fn get_machine_id() -> Option<Uuid> {
         None
