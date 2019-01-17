@@ -1,3 +1,9 @@
+rustfmt_task:
+    container:
+        image: rustlang/rust:nightly
+    component_script: rustup component add rustfmt
+    fmt_script: cargo fmt --all -- --check
+
 test_task:
     matrix:
         - container:
