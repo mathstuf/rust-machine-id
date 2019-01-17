@@ -38,8 +38,8 @@ pub struct MachineId {
 }
 
 lazy_static! {
-    static ref GENERATED_ID: Uuid = Uuid::new(UuidVersion::Random)
-        .expect("failed to generate a random uuid");
+    static ref GENERATED_ID: Uuid =
+        Uuid::new(UuidVersion::Random).expect("failed to generate a random uuid");
     static ref GLOBAL_ID: Option<Uuid> = imp::get_machine_id();
 }
 

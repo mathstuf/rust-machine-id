@@ -20,17 +20,14 @@ error_chain! {
 }
 
 fn get_machine_id_impl() -> Result<Uuid> {
-    let fin = File::open("/etc/machine-id")
-        .chain_err(|| ErrorKind::Io)?;
+    let fin = File::open("/etc/machine-id").chain_err(|| ErrorKind::Io)?;
     let mut reader = BufReader::new(fin);
     let mut line = String::new();
 
-    reader.read_line(&mut line)
-        .chain_err(|| ErrorKind::Io)?;
+    reader.read_line(&mut line).chain_err(|| ErrorKind::Io)?;
     line.truncate(32);
 
-    Uuid::parse_str(&line)
-        .map_err(|err| ErrorKind::Parse(err).into())
+    Uuid::parse_str(&line).map_err(|err| ErrorKind::Parse(err).into())
 }
 
 pub fn get_machine_id() -> Option<Uuid> {
