@@ -10,7 +10,7 @@ test_task:
             image: rust:latest
         - allow_failures: true
           container:
-              image: rustlang/rust:nightly
+            image: rustlang/rust:nightly
     update_script: cargo update
     cargo_cache:
         folder: $CARGO_HOME/registry
