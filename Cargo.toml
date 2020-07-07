@@ -1,13 +1,13 @@
 [package]
 name = "machine-id"
-version = "0.3.0"
+version = "0.4.0"
 authors = ["Ben Boeckel <mathstuf@gmail.com>"]
 license = "BSD-3-Clause"
 description = """
 Library to get a UUID specific to the machine.
 """
 repository = "https://github.com/mathstuf/rust-machine-id"
-documentation = "https://docs.rs/machine-id/~0.3"
+documentation = "https://docs.rs/machine-id/~0.4"
 keywords = ["uuid"]
 edition = "2018"
 
