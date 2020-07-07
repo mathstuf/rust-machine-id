@@ -9,6 +9,7 @@ Library to get a UUID specific to the machine.
 repository = "https://github.com/mathstuf/rust-machine-id"
 documentation = "https://docs.rs/machine-id/~0.3"
 keywords = ["uuid"]
+edition = "2018"
 
 [dependencies]
 lazy_static = "^1.0"
