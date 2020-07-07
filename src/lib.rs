@@ -45,6 +45,12 @@ impl fmt::Display for MachineId {
     }
 }
 
+impl From<MachineId> for Uuid {
+    fn from(mid: MachineId) -> Uuid {
+        mid.uuid
+    }
+}
+
 #[test]
 fn test_idempotent() {
     let fst = MachineId::get();
