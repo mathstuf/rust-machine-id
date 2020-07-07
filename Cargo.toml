@@ -11,11 +11,11 @@ documentation = "https://docs.rs/machine-id/~0.3"
 keywords = ["uuid"]
 
 [dependencies]
-error-chain = "~0.10"
-lazy_static = "~0.2"
-log = "~0.3"
+lazy_static = "^1.0"
+log = "~0.4"
+thiserror = "^1.0"
 # https://github.com/retep998/winapi-rs/issues/214
 #winapi = "~0.2.4"
 #advapi32-sys = "~0.1.2"
 
-uuid = { version = "~0.5", features = ["v4"] }
+uuid = { version = "~0.8", features = ["v4"] }
