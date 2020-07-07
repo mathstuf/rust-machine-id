@@ -11,8 +11,8 @@ documentation = "https://docs.rs/machine-id/~0.3"
 keywords = ["uuid"]
 
 [dependencies]
-lazy_static = "~0.2"
-log = "~0.3"
+lazy_static = "^1.0"
+log = "~0.4"
 thiserror = "^1.0"
 # https://github.com/retep998/winapi-rs/issues/214
 #winapi = "~0.2.4"
