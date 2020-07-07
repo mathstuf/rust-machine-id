@@ -1,11 +1,12 @@
 // Distributed under the OSI-approved BSD 3-Clause License.
 // See accompanying LICENSE file for details.
 
-use crates::thiserror::Error;
-use crates::uuid::{self, Uuid};
-
 use std::fs::File;
 use std::io::{self, BufRead, BufReader};
+
+use log::debug;
+use thiserror::Error;
+use uuid::{self, Uuid};
 
 #[derive(Debug, Error)]
 enum Error {

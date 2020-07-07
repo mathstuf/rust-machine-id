@@ -1,20 +1,10 @@
 // Distributed under the OSI-approved BSD 3-Clause License.
 // See accompanying LICENSE file for details.
 
-#[macro_use]
-extern crate lazy_static;
-
-#[macro_use]
-extern crate log;
-
-mod crates {
-    pub extern crate thiserror;
-    pub extern crate uuid;
-}
-
-use crates::uuid::Uuid;
-
 use std::fmt;
+
+use lazy_static::lazy_static;
+use uuid::Uuid;
 
 #[cfg(unix)]
 mod imp {
