@@ -12,7 +12,7 @@ mod crates {
     pub extern crate uuid;
 }
 
-use crates::uuid::{Uuid, UuidVersion};
+use crates::uuid::Uuid;
 
 use std::fmt;
 
@@ -36,8 +36,7 @@ pub struct MachineId {
 }
 
 lazy_static! {
-    static ref GENERATED_ID: Uuid =
-        Uuid::new(UuidVersion::Random).expect("failed to generate a random uuid");
+    static ref GENERATED_ID: Uuid = Uuid::new_v4();
     static ref GLOBAL_ID: Option<Uuid> = imp::get_machine_id();
 }
 

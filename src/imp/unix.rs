@@ -2,7 +2,7 @@
 // See accompanying LICENSE file for details.
 
 use crates::thiserror::Error;
-use crates::uuid::{ParseError, Uuid};
+use crates::uuid::{self, Uuid};
 
 use std::fs::File;
 use std::io::{self, BufRead, BufReader};
@@ -14,9 +14,10 @@ enum Error {
         #[from]
         source: io::Error,
     },
-    #[error("parse error: {}", err)]
+    #[error("parse error")]
     Parse {
-        err: ParseError,
+        #[from]
+        source: uuid::Error,
     },
 }
 
@@ -28,7 +29,7 @@ fn get_machine_id_impl() -> Result<Uuid, Error> {
     reader.read_line(&mut line)?;
     line.truncate(32);
 
-    Uuid::parse_str(&line).map_err(|err| Error::Parse { err })
+    Ok(Uuid::parse_str(&line)?)
 }
 
 pub fn get_machine_id() -> Option<Uuid> {
