@@ -12,7 +12,13 @@ mod imp {
     pub use self::unix::get_machine_id;
 }
 
-#[cfg(not(any(unix)))]
+#[cfg(windows)]
+mod imp {
+    mod windows;
+    pub use self::windows::get_machine_id;
+}
+
+#[cfg(not(any(unix, windows)))]
 mod imp {
     fn get_machine_id() -> Option<Uuid> {
         None
