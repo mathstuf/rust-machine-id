@@ -39,3 +39,15 @@ linux_task:
     build_script: cargo +$RUSTVER build
     test_script: cargo +$RUSTVER test
     before_cache_script: rm -rf $CARGO_HOME/registry/index
+
+windows_task:
+    container:
+        image: cirrusci/windowsservercore:2019
+    install_script: choco install -y rust
+    update_script: cargo update
+    cargo_cache:
+        folder: $CARGO_HOME/registry
+        fingerprint_script: cat Cargo.lock
+    build_script: cargo build
+    test_script: cargo test
+    before_cache_script: del /S /Q $CARGO_HOME\registry\index
